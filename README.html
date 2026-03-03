@@ -48,41 +48,207 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="system-integration-assignment" class="level1">
-<h1>System Integration Assignment</h1>
-<section id="objective" class="level2">
-<h2 class="anchored" data-anchor-id="objective">Objective</h2>
+<section id="system-engineer-assessment" class="level1">
+<h1>System Engineer Assessment</h1>
+<section id="scenario" class="level2">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>You are tasked with designing and implementing a production-ready data pipeline that extracts data from a provided API endpoint, applies necessary transformations, and loads the results into a database table. The solution should be suitable for deployment within an operational environment and will be evaluated within our production infrastructure prior to formal release.</p>
+<p>This assessment is conducted through GitHub. You are expected to fork the repository, implement their solution within their fork, and submit their work through a pull request.</p>
+<section id="production-principles" class="level3">
+<h3 class="anchored" data-anchor-id="production-principles">Production Principles</h3>
+<p>Our philiosophy of “production” is that systems are expected to operate reliably, predictably, and with minimal manual intervention. This section outlines the foundational principles that guide how we design, deploy, and operate production workloads. These principles reflect our emphasis on engineered systems over ad hoc solutions, following a DataOps model, with attention to operational resilience, maintainability, and long-term sustainability.</p>
 <ul>
-<li>create an ETL pipeline that:
+<li>automation</li>
+<li>code base (“as-code”)</li>
+<li>lite weight</li>
+<li>minimal dependencies</li>
+<li>monitoring</li>
+<li>notifications</li>
+<li>portable</li>
+<li>reproducible</li>
+<li>scalable</li>
+<li>system instructions</li>
+</ul>
+</section>
+<section id="pipeline-principles" class="level3">
+<h3 class="anchored" data-anchor-id="pipeline-principles">Pipeline Principles</h3>
+<p>At Halifax Stanfield, production data pipelines are built using a pipeline-as-code approach. Pipelines are defined, version-controlled, and deployed as code, enabling transparency, repeatability, and peer review. This approach supports modular design, explicit dependencies, environment portability, and automated execution. Our principles emphasize maintainability, observability, and reliability, treating data workflows as engineered systems rather than ad hoc scripts. Additional information and examples are available <a href="https://whipson.github.io/maestro/index.html">here</a>.</p>
+<p><br></p>
+</section>
+</section>
+<section id="assessment-objective" class="level2">
+<h2 class="anchored" data-anchor-id="assessment-objective">Assessment Objective</h2>
+<p>This assessment is to be completed using GitHub as the primary collaboration and submission mechanism. Candidates are expected to fork this repository to their own GitHub account and implement their solution within that fork.</p>
+<p>Access to the forked repository must be granted to the following GitHub users:</p>
+<ul>
+<li>Will Hipson (<code>whipson</code>)</li>
+<li>Ryan Garnett (<code>ryangarnett</code>)</li>
+</ul>
+<p>Upon completion, the assessment must be submitted as a pull request from the candidate’s fork, directed to ryangarnett for review.</p>
+<p>Any questions related to the assessment should be raised as a GitHub Issue within the forked repository. Please tag both ryangarnett and whipson to ensure visibility and response.</p>
+<p><br></p>
+<section id="production-environment" class="level3">
+<h3 class="anchored" data-anchor-id="production-environment">Production Environment</h3>
+<p>The production environment should be considered in the development of the data pipeline:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>System Component</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operating system:</td>
+<td>Linux (RHEL)</td>
+</tr>
+<tr class="even">
+<td>Internet access:</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td>Technologies:</td>
+<td>Runtime: R 4.3<br>Docker</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="pipeline-description" class="level3">
+<h3 class="anchored" data-anchor-id="pipeline-description">Pipeline Description</h3>
+<p>The following are the requirements and assumptions to be used in the development of the data pipeline:</p>
+<ul>
+<li>Code base ETL (extract, transform, load) data pipeline
+<ul>
+<li>ETL pipeline must:
 <ul>
 <li>Extract
 <ul>
-<li>from API endpoint (Geomet API Endpoint -&gt; “https://api.weather.gc.ca/collections/climate-hourly/items”)</li>
+<li>from API endpoint (Geomet API Endpoint: <code>https://api.weather.gc.ca/collections/climate-hourly/items</code>)</li>
+<li>filter on climate id: <code>8202251</code></li>
 </ul></li>
 <li>Transform
 <ul>
-<li>match database schema</li>
-<li>add <code>insert_time</code> as UTC</li>
-<li>convert <code>utc_date</code> to local date (America/Halifax)</li>
+<li>match database schema
+<ul>
+<li>based on <code>yhz_db.hiaa_geomet_hourly</code></li>
+</ul></li>
+<li>convert <code>NA</code>
+<ul>
+<li>numeric columns to <code>0</code></li>
+</ul></li>
+<li>add <code>insert_time</code> as UTC
+<ul>
+<li>format <code>YYYY-MM-DD HH:MM:SS</code></li>
+</ul></li>
 </ul></li>
 <li>Load
 <ul>
 <li>insert into table (<code>hiaa_geomet_hourly</code>) SQLite database (<code>yhz_db.sqlite</code>)</li>
 </ul></li>
 </ul></li>
+</ul></li>
+<li>Pipeline runs daily
+<ul>
+<li>Note: the code/pipeline does not need to handle the orchestration/scheduling of the pipeline</li>
+</ul></li>
 </ul>
-<section id="requirements" class="level3">
-<h3 class="anchored" data-anchor-id="requirements">Requirements</h3>
 </section>
-<section id="optional" class="level3">
-<h3 class="anchored" data-anchor-id="optional">Optional</h3>
+<section id="deliverable" class="level3">
+<h3 class="anchored" data-anchor-id="deliverable">Deliverable</h3>
+<p>The deliverable is a production-oriented data pipeline implementation that satisfies the scenario described above and aligns with the stated pipeline and production principles. The submission should include:</p>
+<ul>
+<li>Source code required to extract, transform, and load data from the API into a database table</li>
+<li>Configuration and system instructions necessary to execute the solution</li>
+<li>Any packaging or runtime artifacts required to run the pipeline in a clean environment</li>
+<li>A concise README within the fork describing assumptions, design decisions, and how to run the solution</li>
+</ul>
+<p>The solution should be complete enough to evaluate structure, production thinking, and operational readiness, while remaining proportionate to the scope of the assignment.</p>
+<p><br></p>
+</section>
+<section id="assessment-evaluation-rubric" class="level3">
+<h3 class="anchored" data-anchor-id="assessment-evaluation-rubric">Assessment Evaluation Rubric</h3>
+<p>The following are the independent evaluation criteria for the assessment.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Evaluation Area</strong></th>
+<th style="text-align: center;"><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pipeline code</td>
+<td style="text-align: center;">50%</td>
+</tr>
+<tr class="even">
+<td>Production principles</td>
+<td style="text-align: center;">30%</td>
+</tr>
+<tr class="odd">
+<td>Runable</td>
+<td style="text-align: center;">20%</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<section id="exclusions-from-evaluation" class="level4">
+<h4 class="anchored" data-anchor-id="exclusions-from-evaluation">Exclusions from Evaluation</h4>
+<p>The assessment is designed to evaluate engineering judgment and production-oriented thinking. The following elements will not factor into scoring:</p>
+<ul>
+<li><em>Algorithmic efficiency or optimization</em><br>
+Performance tuning is not a focus of this exercise</li>
+<li><em>Code style or elegance</em><br>
+Stylistic preferences, personal conventions, or subjective notions of “clean code” will not be evaluated</li>
+<li><em>Perfect execution</em><br>
+A non-executable submission will not automatically result in failure. Clear intent, sound structure, and well-documented reasoning will still be considered</li>
+<li><em>Programming language choice</em><br>
+Any language or framework may be used</li>
+</ul>
+<p><br></p>
+<p>Candidates are also not expected to invest effort in the following areas unless directly relevant to their design:</p>
+<ul>
+<li>CI/CD pipeline implementation</li>
+<li>Enterprise-grade security hardening</li>
+<li>Extensive test suites or performance benchmarking</li>
+<li>Infrastructure provisioning beyond what is required to demonstrate execution</li>
+<li>UI development or dashboards</li>
+</ul>
+<p>Submissions should remain proportionate to the scope of the scenario. Depth of engineering thinking is valued more than breadth of additional features.</p>
+<p><br></p>
+</section>
+<section id="pipeline-code" class="level4">
+<h4 class="anchored" data-anchor-id="pipeline-code">Pipeline Code</h4>
+<p>When reviewing the pipeline code, evaluation will focus on the following:</p>
+<ul>
+<li>clarity of intent</li>
+<li>configuration and parameterization</li>
+<li>pipeline logic</li>
+<li>structure and organization</li>
+</ul>
+</section>
+<section id="production-principles-1" class="level4">
+<h4 class="anchored" data-anchor-id="production-principles-1">Production Principles</h4>
+<p>Evaluation will focus on how well the solution reflects production-oriented thinking, including:</p>
+<ul>
+<li>automation</li>
+<li>dependency management</li>
+<li>operational readiness</li>
+<li>reproducibility and protability</li>
+</ul>
+</section>
+<section id="runable" class="level4">
+<h4 class="anchored" data-anchor-id="runable">Runable</h4>
+<p>Evaluation will focus on how easily the solution can be executed in a clean environment, including:</p>
+<ul>
+<li>Low-friction execution</li>
+<li>Self-contained packaging</li>
+<li>System instructions</li>
+</ul>
+<p><br></p>
+<p><strong><em>The use of Generative AI is acceptable for this assignment</em></strong></p>
 </section>
 </section>
-<section id="deliverables" class="level2">
-<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-</section>
-<section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">Next Steps</h2>
 </section>
 </section>
 
