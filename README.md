@@ -23,7 +23,7 @@ Our philiosophy of "production" is that systems are expected to operate reliably
 
 
 ### Pipeline Principles
-At Halifax Stanfield, production data pipelines are built using a pipeline-as-code approach. Pipelines are defined, version-controlled, and deployed as code, enabling transparency, repeatability, and peer review. This approach supports modular design, explicit dependencies, environment portability, and automated execution. Our principles emphasize maintainability, observability, and reliability, treating data workflows as engineered systems rather than ad hoc scripts. Additional information and examples are available [here](https://whipson.github.io/maestro/index.html).
+At Halifax Stanfield, production data pipelines are built using a pipeline-as-code approach. Pipelines are defined, version-controlled, and deployed as code, enabling transparency, repeatability, and peer review. This approach supports modular design, explicit dependencies, environment portability, and automated execution. Our principles emphasize maintainability, observability, and reliability, treating data workflows as engineered systems rather than ad hoc scripts. Additional information and examples are available <a href="https://whipson.github.io/maestro/index.html" target="_blank">here</a>.
 
 <br>
 
