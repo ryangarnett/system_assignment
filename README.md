@@ -48,9 +48,9 @@ Here are the detailed requirements of your pipeline:
 The deliverable is a production-oriented data pipeline that satisfies the scenario and aligns with production principles. The submission should include:
 
 - Code required to extract, transform, and load data from the API into a database table
-- README.md describing the solution and how to run it in production (you should replace this README.md with your own)
+- README.md describing the solution and how to run it in production
 - If applicable, configuration and system instructions necessary to execute the solution
-- If applicable, packaging or runtime artifacts required to run the pipeline in a clean environment
+- If applicable, packaging or runtime artifacts required to execute the solution
 
 The solution should be complete enough to evaluate structure, production thinking, and operational readiness, while remaining proportionate to the scope of the assignment.
 
@@ -94,9 +94,9 @@ Submissions should remain proportionate to the scope of the scenario. Depth of e
 When reviewing the pipeline code, evaluation will focus on the following:
 
 - clarity of intent
-- configuration and parameterization
 - pipeline logic
 - structure and organization
+- maintainability
 
 
 #### Production Principles
