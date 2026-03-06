@@ -118,18 +118,27 @@ Evaluation will focus on how easily the solution can be executed in a clean envi
 ## How to Submit
 This assessment is to be completed using GitHub as the primary collaboration and submission mechanism. You must create your own **private** repository containing your solution and the copied `yhz_db.sqlite` file from this repository. 
 
-We suggest one of two methods:
+### Step 1: Create your repo with the copied sqlite database
 
-1. Simply download and copy the `yhz_db.sqlite` file from this repo into your own repository and work from there
-2. Import the current repository into your own private repository (see <a href="https://github.com/new/import" target="_blank">here</a>.)
+Either download and copy the `yhz_db.sqlite` file from this repo into your own repository OR import the current repository into your own private repository (see <a href="https://github.com/new/import" target="_blank">here</a>.)
 
 **DO NOT FORK this repository! Forked repositories cannot be made private, meaning your solution will be publicly viewable**
+
+### Step 2: Invite us to your private repo
 
 Access to your repository must be granted to the following GitHub users:
 
 - Will Hipson (`whipson`)
 - Ryan Garnett (`ryangarnett`)
 
+Invite us by going to **Settings > Access > Collaborators**
+
 Any questions related to the assessment should be raised as a GitHub Issue within your repository. Please tag both ryangarnett and whipson to ensure visibility and response.
+
+### Step 3: Create a pull request to the main branch
+
+When you've finished your work create a pull request to your main branch and tag `ryangarnett` as reviewer. It's OK to do the bulk of your development in the main branch - we just want you to use a pull request with a review as the main signal for your work being complete.
+
+You must create the pull request with `ryangarnett` as the reviewer before the assignmment due date as indicated in your invitation email.
 
 ***The use of Generative AI is acceptable for this assignment***
